@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.androidbase.R
 import com.example.androidbase.databinding.ActivityMainBinding
+import com.example.androidbase.ui.home.BookListFragment
 import com.example.androidbase.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction().replace(R.id.fragment_top, HomeFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_bottom, BookListFragment()).commit()
 
         val toolbarTemplate = binding.toolbar
         setSupportActionBar(toolbarTemplate)
