@@ -1,9 +1,10 @@
 package com.example.androidbase.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.androidbase.R
 import com.example.androidbase.databinding.ActivityMainBinding
 import com.example.androidbase.ui.booklist.BookListFragment
@@ -17,19 +18,33 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_top, HomeFragment()).commit()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_bottom, BookListFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_top, HomeFragment())
+            .commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_bottom, BookListFragment())
+            .commit()
 
-        val toolbarTemplate = binding.toolbar
-        setSupportActionBar(toolbarTemplate)
+        setSupportActionBar(binding.toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.app_menu, menu)
         return true
     }
-    
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.location -> {
+            Toast.makeText(this, "location", Toast.LENGTH_SHORT).show()
+            true
+        }
+
+        R.id.notification -> {
+            Toast.makeText(this, "notification", Toast.LENGTH_SHORT).show()
+            true
+        }
+
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
     }
+
 }
