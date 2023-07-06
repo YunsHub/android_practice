@@ -7,13 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidbase.R
+import com.example.androidbase.data.model.Book
+import com.example.androidbase.data.model.BookListResponse
 import com.example.androidbase.databinding.FragmentBookListBinding
 
 
 class BookListFragment : Fragment() {
     private lateinit var binding: FragmentBookListBinding
     private val bookListViewModel: BookListViewModel by viewModels()
+    private lateinit var book: List<Book>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,8 +29,21 @@ class BookListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvList.setOnClickListener {
-            bookListViewModel.getBookList("곰", 1)
+        initView()
+        initViewModelCallback()
+    }
+
+    private fun initView() {
+        bookListViewModel.getBookList("안드로이드", 1)
+
+    }
+    private fun initViewModelCallback() {
+        bookListViewModel.bookList.observe(viewLifecycleOwner) {
+            book = it.bookList
+            val bookAdapter = BookAdapter(book)
+            bookAdapter.notifyDataSetChanged()
+            binding.rvBookList.adapter = bookAdapter
+            binding.rvBookList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
     }
 
