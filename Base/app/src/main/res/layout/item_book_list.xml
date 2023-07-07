@@ -20,7 +20,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@drawable/round_background"
-            android:src="@drawable/baseline_menu_book_24"
+            loadImage="@{Book.image}"
             android:layout_margin="16dp"
             />
 

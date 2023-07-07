@@ -35,7 +35,6 @@ class BookListFragment : Fragment() {
 
     private fun initView() {
         bookListViewModel.getBookList("안드로이드", 1)
-
     }
     private fun initViewModelCallback() {
         bookListViewModel.bookList.observe(viewLifecycleOwner) {
