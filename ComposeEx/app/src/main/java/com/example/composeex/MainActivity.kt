@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -33,7 +37,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyButtonEx()
+
                 }
             }
         }
@@ -41,17 +45,27 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyButtonEx() {
-    val count = remember { mutableStateOf(0) }
-
-    Button(onClick = {
-        count.value += 1
-    },
-        modifier = Modifier
-            .fillMaxSize()
+fun MyColumnEx() {
+    Column(
+        modifier = Modifier.padding(20.dp)
     ) {
-        Text(text = "${count.value}회 클릭되었습니다.",
-            fontSize = 40.sp)
+        Text(
+            text = "Android",
+            fontSize = 30.sp
+        )
+        Divider(
+            thickness = 4.dp,
+            color = Color.Yellow
+        )
+        Spacer(modifier = Modifier.padding(20.dp))
+        Text(
+            text = "Jetpack",
+            fontSize = 30.sp,
+        )
+        Text(
+            text = "Compose",
+            fontSize = 30.sp,
+        )
     }
 }
 
@@ -60,6 +74,6 @@ fun MyButtonEx() {
 @Composable
 fun GreetingPreview() {
     ComposeExTheme {
-        MyButtonEx()
+
     }
 }
