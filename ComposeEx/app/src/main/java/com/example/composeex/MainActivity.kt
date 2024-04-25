@@ -13,11 +13,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.composeex.ui.theme.ComposeExTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyButtonEx("Android")
+                    MyButtonEx()
                 }
             }
         }
@@ -38,28 +41,25 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyButtonEx(name: String, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
+fun MyButtonEx() {
+    val count = remember { mutableStateOf(0) }
 
-    Button(
-        onClick = {
-            Toast.makeText(context, "클릭", Toast.LENGTH_LONG).show()
-        },
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Yellow,
-            contentColor = Color.Blue
-        ),
-        modifier = Modifier.width(120.dp).height(100.dp)
-    )
-    {
-        Text("버튼입니다. ")
+    Button(onClick = {
+        count.value += 1
+    },
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Text(text = "${count.value}회 클릭되었습니다.",
+            fontSize = 40.sp)
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     ComposeExTheme {
-        MyButtonEx("Android")
+        MyButtonEx()
     }
 }
