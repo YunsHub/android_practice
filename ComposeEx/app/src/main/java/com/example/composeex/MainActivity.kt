@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.composeex.ui.theme.ComposeExTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +43,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeExTheme {
-
+                
             }
         }
     }
@@ -50,8 +53,23 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     ComposeExTheme {
-        
+
     }
+}
+
+@Composable
+fun MyImageEx1() {
+    Image(
+        painter = painterResource(id = R.drawable.background),
+        contentDescription = "background"
+    )
+}
+
+@Composable
+fun MyImageEx2() {
+    AsyncImage(
+        model = "https://cdn-icons-png.flaticon.com/512/7591/7591133.png",
+        contentDescription = "아기 상어")
 }
 
 @Composable
@@ -179,7 +197,9 @@ fun MyButtonEx1() {
             containerColor = Color.Yellow,
             contentColor = Color.Blue
         ),
-        modifier = Modifier.width(120.dp).height(100.dp)
+        modifier = Modifier
+            .width(120.dp)
+            .height(100.dp)
     )
     {
         Text("버튼입니다. ")
