@@ -13,17 +13,25 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.composeex.ui.theme.ComposeExTheme
 
@@ -32,20 +40,95 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeExTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
 
-                }
             }
         }
     }
 }
 
+@Preview(showBackground = true)
 @Composable
-fun MyColumnEx() {
+fun GreetingPreview() {
+    ComposeExTheme {
+        
+    }
+}
+
+@Composable
+fun MyTextFieldEx3() {
+    var textState by remember { mutableStateOf("Android") }
+    var resultText by remember { mutableStateOf("") }
+
+    Column(modifier = Modifier.padding(20.dp)) {
+        OutlinedTextField(
+            value = textState,
+            onValueChange = {
+                textState = it
+            },
+            label = {
+                Text(text = "입력하세요.")
+            },
+
+            )
+
+        Button(onClick = {
+            resultText = textState
+        }) {
+            Text(text = "입력")
+        }
+
+
+        Text(text = "결과값 : $resultText")
+    }
+}
+
+@Composable
+fun MyTextFieldEx2() {
+    var textState by remember { mutableStateOf("Android") }
+
+    OutlinedTextField(
+        value = textState,
+        onValueChange = {
+            textState = it
+        },
+        label = {
+            Text(text = "입력하세요.")
+        },
+        modifier = Modifier.padding(20.dp)
+    )
+}
+
+@Composable
+fun MyTextFieldEx1() {
+    var textState by remember { mutableStateOf("Android") }
+
+    TextField(
+        value = textState,
+        onValueChange = {
+            textState = it
+        },
+        label = {
+            Text(text = "입력하세요.")
+        }
+    )
+}
+
+@Composable
+fun MyRememberEx1() {
+    val count = remember { mutableStateOf(0) }
+
+    Button(onClick = {
+        count.value += 1
+    },
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(text = "${count.value}회 클릭되었습니다.",
+            fontSize = 40.sp)
+    }
+}
+
+@Composable
+fun MyColumnEx2() {
     Column(
         modifier = Modifier.padding(20.dp)
     ) {
@@ -69,11 +152,72 @@ fun MyColumnEx() {
     }
 }
 
-
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    ComposeExTheme {
+fun MyColumnEx1() {
+    Text(
+        text = "Android",
+        fontSize = 30.sp
+    )
+    Text(text = "Jetpack",
+        fontSize = 30.sp,
+        modifier = Modifier.padding(top = 50.dp)
+    )
+    Text(text = "Compose",
+        fontSize = 30.sp,
+        modifier = Modifier.padding(top = 100.dp)
+    )
+}
 
+@Composable
+fun MyButtonEx1() {
+    val context = LocalContext.current
+
+    Button(onClick = {
+        Toast.makeText(context, "클릭", Toast.LENGTH_LONG).show()
+    },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Yellow,
+            contentColor = Color.Blue
+        ),
+        modifier = Modifier.width(120.dp).height(100.dp)
+    )
+    {
+        Text("버튼입니다. ")
     }
 }
+
+@Composable
+fun MyTextAlignEx2() {
+    Text(
+        text = "Hello World, ComposeHello World, ComposeHello World, ComposeHello World, ComposeHello World, ComposeHello World, Compose",
+        style = LocalTextStyle.current.merge(
+            TextStyle(
+                lineHeight = 2.5.em
+            )
+        )
+    )
+}
+
+@Composable
+fun MyTextAlignEx1() {
+    Text(
+        text = "Hello World, Compose",
+        fontSize = 20.sp,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.width(100.dp)
+    )
+}
+
+@Composable
+fun MyTextEx1() {
+    Text(
+        text = "안녕하세요 텍스트 예제입니다.",
+        fontSize = 40.sp,
+        fontStyle = FontStyle.Italic,
+        fontWeight = FontWeight.Bold,
+        color = Color.Black,
+        modifier = Modifier.padding(40.dp),
+        style = TextStyle(background = Color.White)
+    )
+}
+
