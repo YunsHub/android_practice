@@ -12,10 +12,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -30,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -49,7 +52,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeExTheme {
-                
+
             }
         }
     }
@@ -59,8 +62,74 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     ComposeExTheme {
-
+        
     }
+}
+
+@Composable
+fun MyCardEx() {
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .padding(20.dp)
+        .background(color = Color.Black)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(400.dp)
+                .padding(8.dp)
+                .background(color = Color.LightGray),
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Image(
+                painter = painterResource(id = R.drawable.background),
+                contentDescription = "image",
+            )
+
+
+            Text(
+                text = "Android Development",
+                fontSize = 20.sp,
+                style = TextStyle(fontWeight = FontWeight.Bold)
+            )
+            Text(
+                text = "Compose"
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "이메일",
+                    style = TextStyle(fontWeight = FontWeight.Bold)
+                )
+                Text(
+                    modifier = Modifier.padding(start = 20.dp),
+                    text = "wkdrns3918@gmail.com"
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "연락처",
+                    style = TextStyle(fontWeight = FontWeight.Bold)
+                )
+                Text(
+                    modifier = Modifier.padding(start = 20.dp),
+                    text = "010-1234-5678"
+                )
+            }
+
+        }
+    }
+
 }
 
 @Composable
