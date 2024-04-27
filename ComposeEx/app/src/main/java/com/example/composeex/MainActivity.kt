@@ -26,6 +26,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -66,9 +67,62 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     ComposeExTheme {
+        
+    }
+}
+
+@Composable
+fun MySurfaceEx1() {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
+        color = Color.Green,
+        shape = RoundedCornerShape(20.dp)
+    ) {
+        Button(
+            onClick = {  },
+            colors = ButtonDefaults.outlinedButtonColors(
+                contentColor = Color.Red
+            )
+            ) {
+            Text(
+                text = "클릭"
+            )
+        }
+    }
+}
+
+@Composable
+fun MySurfaceEx2() {
+    Surface(
+        modifier = Modifier
+            .fillMaxSize(),
+        color = Color.LightGray,
+        border = BorderStroke(4.dp, Color.Blue),
+        contentColor = Color.Red
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Surface(
+                modifier = Modifier
+                    .size(300.dp),
+                color = Color.Green
+            ) {
+                Text(text = "Android Compose")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(text = "Android Compose Ex", fontSize = 20.sp)
+        }
 
     }
 }
+
 
 @Composable
 fun MyWebViewEx() {
