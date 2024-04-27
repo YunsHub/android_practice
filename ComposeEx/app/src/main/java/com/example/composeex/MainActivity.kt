@@ -467,3 +467,72 @@ fun MyTextEx1() {
     )
 }
 
+@Composable
+fun MyScaffoldEx() {
+    Scaffold(
+        topBar = {
+            MyTopBarEx()
+        },
+        floatingActionButton = {
+            MyFloatingActionButtonEx()
+        },
+        bottomBar = {
+            MyBottomBarEx()
+        }
+    ) { paddingValues ->
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            Text(text = "Android Compose")
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyTopBarEx() {
+    TopAppBar(
+        title = {
+            Text(text = "Main")
+        },
+        navigationIcon = {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(Icons.Default.Add, contentDescription = "add")
+            }
+        },
+        actions = {
+            Button(onClick = { }) {
+                Text(text = "Btn")
+            }
+        },
+        colors = topAppBarColors(
+            Color.Red
+        )
+    )
+}
+
+@Composable
+fun MyFloatingActionButtonEx() {
+    FloatingActionButton(onClick = { /*TODO*/ }) {
+        Icon(Icons.Default.Menu, contentDescription = "menu")
+    }
+}
+
+@Composable
+fun MyBottomBarEx() {
+    BottomAppBar(
+        containerColor = Color.Red,
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            Icon(Icons.Default.Home, contentDescription = "Home")
+            Icon(Icons.Default.Favorite, contentDescription = "Favorite")
+            Icon(Icons.Default.Settings, contentDescription = "Settings")
+        }
+    }
+}
+
