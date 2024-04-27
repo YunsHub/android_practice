@@ -6,8 +6,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -58,6 +60,28 @@ class MainActivity : ComponentActivity() {
 fun GreetingPreview() {
     ComposeExTheme {
 
+    }
+}
+
+@Composable
+fun MyRowEx1() {
+    Row(
+        modifier = Modifier.fillMaxSize(),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = "Item1",
+            style = TextStyle(background = Color.Red)
+        )
+        Text(
+            text = "Item2",
+            style = TextStyle(background = Color.Green)
+        )
+        Text(
+            text = "Item3",
+            style = TextStyle(background = Color.Blue)
+        )
     }
 }
 
