@@ -104,30 +104,6 @@ fun MyCardEx2() {
 }
 
 @Composable
-fun MyCardEx2() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp)
-            .padding(10.dp),
-        shape = RoundedCornerShape(50.dp),
-        border = BorderStroke(2.dp, Color.Black)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.LightGray),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "1",
-                fontSize = 20.sp
-            )
-        }
-    }
-}
-
-@Composable
 fun MyCardEx() {
     Box(modifier = Modifier
         .fillMaxWidth()
