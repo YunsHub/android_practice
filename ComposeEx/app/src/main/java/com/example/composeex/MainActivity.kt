@@ -1,6 +1,7 @@
 package com.example.composeex
 
 import android.os.Bundle
+import android.webkit.WebView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -46,6 +47,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
 import com.example.composeex.ui.theme.ComposeExTheme
 
@@ -64,7 +66,40 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     ComposeExTheme {
-        
+
+    }
+}
+
+@Composable
+fun MyWebViewEx() {
+    AndroidView(factory = {
+        WebView(it).apply {
+            loadUrl("https://www.naver.com")
+        }
+    })
+}
+
+@Composable
+fun MyCardEx2() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp)
+            .padding(10.dp),
+        shape = RoundedCornerShape(50.dp),
+        border = BorderStroke(2.dp, Color.Black)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.LightGray),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "1",
+                fontSize = 20.sp
+            )
+        }
     }
 }
 
