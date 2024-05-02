@@ -45,6 +45,7 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
@@ -77,7 +78,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeExTheme {
-                MyProgressIndicator()
+
             }
         }
     }
@@ -87,7 +88,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     ComposeExTheme {
-        MyProgressIndicator()
+
     }
 }
 
@@ -748,5 +749,69 @@ fun MyTextFormat2(content: @Composable () -> Unit) {
         content()
         content()
         content()
+    }
+}
+
+@Composable
+fun MyShowHideEx1() {
+    var isButtonVisible by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = {
+            isButtonVisible = !isButtonVisible
+        }) {
+            if(isButtonVisible) {
+                Text(
+                    text = "hide",
+                    fontSize = 40.sp
+                )
+            } else {
+                Text(
+                    text = "show",
+                    fontSize = 40.sp
+                )
+            }
+        }
+
+        if(isButtonVisible) {
+            Button(onClick = { /*TODO*/ }) {
+                Text(
+                    text = "Btn",
+                    fontSize = 40.sp
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun MyShowHideEx2() {
+    var switchState by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier.padding(20.dp)
+    ) {
+        Switch(
+            checked = switchState,
+            onCheckedChange = {checked ->
+                switchState = checked
+            }
+        )
+
+        Text(
+            text = if(switchState) "ON" else "OFF",
+            fontSize = 20.sp
+        )
+
+        if(switchState) {
+            Text(
+                text = "Android Compose",
+                fontSize = 20.sp
+            )
+        }
     }
 }
