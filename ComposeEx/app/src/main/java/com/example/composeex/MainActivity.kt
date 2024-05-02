@@ -34,11 +34,13 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -74,7 +76,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeExTheme {
-
+                MyProgressIndicator()
             }
         }
     }
@@ -84,7 +86,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     ComposeExTheme {
-        
+        MyProgressIndicator()
     }
 }
 
@@ -649,3 +651,39 @@ fun MyLazyRowEx() {
     }
 }
 
+@Composable
+fun MyProgressIndicator() {
+    var progress by remember { mutableStateOf(0.0f) }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = {
+            if(progress < 1.0f) {
+                progress += 0.1f
+            }
+
+        }) {
+            Text(
+                text = "게이지",
+                fontSize = 40.sp
+            )
+        }
+
+        Spacer(modifier = Modifier.size(30.dp))
+
+        LinearProgressIndicator(
+            progress = progress,
+            modifier = Modifier.height(10.dp),
+            color = Color.Red,
+            trackColor = Color.LightGray
+        )
+
+        CircularProgressIndicator(
+            progress = progress,
+            color = Color.Red
+        )
+    }
+}
