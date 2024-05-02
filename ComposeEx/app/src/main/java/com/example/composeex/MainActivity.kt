@@ -70,6 +70,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.composeex.ui.theme.ComposeExTheme
 
@@ -812,6 +816,95 @@ fun MyShowHideEx2() {
                 text = "Android Compose",
                 fontSize = 20.sp
             )
+        }
+    }
+}
+
+@Composable
+fun MyScreen1(navController: NavHostController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "screen1",
+            fontSize = 20.sp
+        )
+
+        Button(onClick = {
+            navController.navigate("myScreen2")
+        }) {
+            Text(
+                text = "move screen2",
+                fontSize = 30.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun MyScreen2(navController: NavHostController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "screen2",
+            fontSize = 20.sp
+        )
+
+        Button(onClick = {
+            navController.navigate("myScreen3")
+        }) {
+            Text(
+                text = "move screen3",
+                fontSize = 30.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun MyScreen3(navController: NavHostController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "screen3",
+            fontSize = 20.sp
+        )
+
+        Button(onClick = {
+            navController.navigate("myScreen1")
+        }) {
+            Text(
+                text = "move screen1",
+                fontSize = 30.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun MyNav() {
+    val navController = rememberNavController()
+
+    NavHost(
+        navController = navController,
+        startDestination = "myScreen1"
+    ) {
+        composable("myScreen1") {
+            MyScreen1(navController = navController)
+        }
+        composable("myScreen2") {
+            MyScreen2(navController = navController)
+        }
+        composable("myScreen3") {
+            MyScreen3(navController = navController)
         }
     }
 }
