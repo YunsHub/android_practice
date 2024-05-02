@@ -19,6 +19,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -50,7 +52,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -95,11 +96,11 @@ fun MySurfaceEx1() {
         shape = RoundedCornerShape(20.dp)
     ) {
         Button(
-            onClick = {  },
+            onClick = { },
             colors = ButtonDefaults.outlinedButtonColors(
                 contentColor = Color.Red
             )
-            ) {
+        ) {
             Text(
                 text = "클릭"
             )
@@ -173,10 +174,12 @@ fun MyCardEx2() {
 
 @Composable
 fun MyCardEx() {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .padding(20.dp)
-        .background(color = Color.Black)) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp)
+            .background(color = Color.Black)
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -309,7 +312,8 @@ fun MyImageEx1() {
 fun MyImageEx2() {
     AsyncImage(
         model = "https://cdn-icons-png.flaticon.com/512/7591/7591133.png",
-        contentDescription = "아기 상어")
+        contentDescription = "아기 상어"
+    )
 }
 
 @Composable
@@ -375,13 +379,16 @@ fun MyTextFieldEx1() {
 fun MyRememberEx1() {
     val count = remember { mutableStateOf(0) }
 
-    Button(onClick = {
-        count.value += 1
-    },
+    Button(
+        onClick = {
+            count.value += 1
+        },
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = "${count.value}회 클릭되었습니다.",
-            fontSize = 40.sp)
+        Text(
+            text = "${count.value}회 클릭되었습니다.",
+            fontSize = 40.sp
+        )
     }
 }
 
@@ -416,11 +423,13 @@ fun MyColumnEx1() {
         text = "Android",
         fontSize = 30.sp
     )
-    Text(text = "Jetpack",
+    Text(
+        text = "Jetpack",
         fontSize = 30.sp,
         modifier = Modifier.padding(top = 50.dp)
     )
-    Text(text = "Compose",
+    Text(
+        text = "Compose",
         fontSize = 30.sp,
         modifier = Modifier.padding(top = 100.dp)
     )
@@ -430,9 +439,10 @@ fun MyColumnEx1() {
 fun MyButtonEx1() {
     val context = LocalContext.current
 
-    Button(onClick = {
-        Toast.makeText(context, "클릭", Toast.LENGTH_LONG).show()
-    },
+    Button(
+        onClick = {
+            Toast.makeText(context, "클릭", Toast.LENGTH_LONG).show()
+        },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Yellow,
             contentColor = Color.Blue
@@ -546,6 +556,49 @@ fun MyBottomBarEx() {
             Icon(Icons.Default.Home, contentDescription = "Home")
             Icon(Icons.Default.Favorite, contentDescription = "Favorite")
             Icon(Icons.Default.Settings, contentDescription = "Settings")
+        }
+    }
+}
+
+@Composable
+fun MyLazyColumnEx() {
+    val textList = listOf(
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"
+    )
+
+    LazyColumn {
+        items(textList) { item ->
+            Text(
+                text = item,
+                fontSize = 40.sp,
+                modifier = Modifier.fillMaxWidth()
+            )
+
         }
     }
 }
