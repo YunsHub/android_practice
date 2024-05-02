@@ -64,6 +64,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -685,5 +686,67 @@ fun MyProgressIndicator() {
             progress = progress,
             color = Color.Red
         )
+    }
+}
+
+@Composable
+fun MyTextArea1() {
+    Column() {
+        Text(
+            text = "Android",
+            fontSize = 60.sp,
+            color = Color.Red
+        )
+
+        Text(
+            text = "Compose",
+            fontSize = 60.sp,
+            color = Color.Green
+        )
+
+        Text(
+            text = "Example",
+            fontSize = 60.sp,
+            color = Color.Blue
+        )
+
+    }
+}
+
+@Composable
+fun MyTextArea2() {
+    Column() {
+        MyTextFormat1(text = "Android", fontSize = 60.sp, color = Color.Red)
+        MyTextFormat1(text = "Compose", fontSize = 60.sp, color = Color.Red)
+        MyTextFormat1(text = "Example", fontSize = 60.sp, color = Color.Red)
+    }
+}
+
+@Composable
+fun MyTextFormat1(text: String, fontSize: TextUnit, color: Color) {
+    Text(
+        text = text,
+        fontSize = fontSize,
+        color = color
+    )
+}
+
+@Composable
+fun MyTextArea3() {
+    MyTextFormat2 {
+        Text(
+            text = "Android",
+            fontSize = 60.sp,
+            color = Color.Blue
+        )
+    }
+}
+
+@Composable
+fun MyTextFormat2(content: @Composable () -> Unit) {
+    Column() {
+        content()
+        content()
+        content()
     }
 }
